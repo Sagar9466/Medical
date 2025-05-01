@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services - Sagar Medical Store</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+        html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+      padding: 20px;
+    }
+    footer {
+      background-color: #302b2b;
+      padding: 10px;
+      text-align: center;
+      border-top: 1px solid #ccc;
+    }
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .service-box {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      width: 100%;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    #suggestion {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #e9ffe9;
+      border: 1px solid #b2ffb2;
+      border-radius: 5px;
+    }
+    .order-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+    .order-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sagar Medical Store</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="service.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="service-box">
+      <h2>Medicine Suggestion Based on Symptoms</h2>
+      <input type="text" id="symptomInput" placeholder="Enter your symptoms (e.g. headache, cough)" />
+      <button onclick="suggestMedicine()">Get Suggestion</button>
+
+      <div id="suggestion" style="display:none;">
+        <p><strong>Suggested Medicine:</strong> <span id="medicineName">Paracetamol</span></p>
+        <p><strong>Price:</strong> ₹<span id="medicinePrice">30</span></p>
+        <a id="orderLink" class="order-button" href="#" target="_blank">Order Now</a>
+
+<hr>
+        
+      <form
+      action="https://formspree.io/f/xvgaznrd"
+      method="POST"
+
+    >       <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+
+
+            <label for="contact">Contact No</label>
+            <input type="text" id="Phone" name="contact" required />
+
+         <input type="text" name="medicine" id="medicine" style="display: none;">
+
+            <label for="qty">Quantity</label>
+            <input type="number" id="Phone" name="qty" required />
+      
+    
+            <label for="message">Address</label>
+            <textarea id="message" name="Address" rows="4" required></textarea>
+    
+            <button type="submit">order now !</button>
+          </form>
+          <hr>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sagar Medical Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function suggestMedicine() {
+      const symptom = document.getElementById('symptomInput').value.toLowerCase();
+      let medicine = "Paracetamol";
+      let price = 30;
+
+      if (symptom.includes("cough")) {
+        medicine = "Benadryl Syrup";
+        price = 80;
+      } else if (symptom.includes("fever")) {
+        medicine = "Dolo 650";
+        price = 25;
+      } else if (symptom.includes("headache")) {
+        medicine = "Saridon";
+        price = 20;
+      } else if (symptom.includes("cold")) {
+        medicine = "Cetirizine";
+        price = 15;
+      }
+
+      document.getElementById("medicineName").textContent = medicine;
+      document.getElementById("medicine").value=medicine;
+      document.getElementById("medicinePrice").textContent = price;
+      document.getElementById("suggestion").style.display = "block";
+
+      const subject = encodeURIComponent("Medicine Order Request");
+      const body = encodeURIComponent(`Hi,\n\nI would like to order the following medicine:\n\nMedicine: ${medicine}\nPrice: ₹${price}\n\nPlease contact me for further details.\n\nThank you!`);
+      document.getElementById("orderLink").href = `mailto:harpalsrv498@gmail.com?subject=${subject}&body=${body}`;
+    }
+  </script>
+</body>
+</html>
